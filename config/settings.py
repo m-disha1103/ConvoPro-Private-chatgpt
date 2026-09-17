@@ -8,9 +8,9 @@ class Settings(BaseSettings):
 
     MONGO_DB_URL: str
     MONGO_DB_NAME: str
-    OLLAMA_URL: str
-    OLLAMA_MODELS: str
+    GROQ_API_KEY: str
+    GROQ_MODELS: str
 
     class Config:
         env_file = ".env"
-        env_file_encoding = "utf-8"   
+        env_file_encoding = "utf-8"
