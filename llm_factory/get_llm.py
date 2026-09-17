@@ -62,4 +62,5 @@ def get_groq_llm(model_name: str):
         model=model_name,
         api_key=os.getenv("GROQ_API_KEY"),
         api_base="https://api.groq.com/openai/v1",
+        context_window=8192,
     )
