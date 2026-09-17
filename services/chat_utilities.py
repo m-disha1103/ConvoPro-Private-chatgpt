@@ -1,46 +1,10 @@
-# from llama_index.core.llms import ChatMessage, MessageRole
-
-# from llm_factory.get_llm import get_ollama_llm
-
-# def get_answer(model_name, chat_history):
-#     llm = get_ollama_llm(model_name)
-
-#     # Always prepend a system message
-#     messages = [
-#         ChatMessage(role=MessageRole.SYSTEM, content="You are a helpful chat assistant.")
-#     ]
-
-#     # Append the rest of the history
-#     messages.extend(
-#         ChatMessage(role=MessageRole[msg["role"].upper()], content=msg["content"])
-#         for msg in chat_history
-#     )
-
-#     response = llm.chat(messages=messages)
-#     return response.message.content
-
-
-# example usage
-# model_name = "llama3:latest"
-# chat_history = [
-#     {"role": "user", "content": "What is Artificial Intelligence?"}
-# ]
-# response = get_answer(model_name, chat_history)
-# print(response)
-
-
-import os
 from llama_index.core.llms import ChatMessage, MessageRole
-from llm_factory.get_llm import get_ollama_llm, get_groq_llm
+
+from llm_factory.get_llm import get_groq_llm
 
 
 def get_answer(model_name, chat_history):
-    # Streamlit Cloud → Groq
-    if os.getenv("GROQ_API_KEY"):
-        llm = get_groq_llm("llama-3.3-70b-versatile")
-    else:
-        # Local → Ollama
-        llm = get_ollama_llm(model_name)
+    llm = get_groq_llm(model_name)
 
     messages = [
         ChatMessage(
@@ -58,4 +22,5 @@ def get_answer(model_name, chat_history):
     )
 
     response = llm.chat(messages=messages)
+
     return response.message.content
